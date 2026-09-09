@@ -1,8 +1,10 @@
+import os
 import tkinter as tk
 from tkinter import filedialog, messagebox
-from PIL import ImageTk, Image, ImageDraw
+
 import image as i
-import os
+from PIL import Image, ImageDraw, ImageTk
+
 
 class ImageOptimizerGUI(tk.Tk):
     def __init__(self):
@@ -13,22 +15,22 @@ class ImageOptimizerGUI(tk.Tk):
         self.optimized_image_path = None
         self.pan_offset = [0, 0]
         self.bbox_rect = None
-        self.config(bg="black") 
+        self.config(bg="white")
         # Main horizontal layout
         main_frame = tk.Frame(self)
         main_frame.pack(fill='both', expand=True, padx=10, pady=10)
-        main_frame.config(bg="black")
+        main_frame.config(bg="white")
 
         # Left: Image display
         left_frame = tk.Frame(main_frame)
         left_frame.pack(side='left', fill='both', expand=True)
-        left_frame.config(bg="black")
+        left_frame.config(bg="white")
         self.canvas = tk.Canvas(left_frame, bg='#f0f0f0', width=400, height=400, highlightthickness=0)
         self.canvas.pack(fill='both', expand=True, padx=5, pady=5)
         self.canvas_img = None
         self.canvas.bind('<ButtonPress-1>', self.start_pan)
         self.canvas.bind('<B1-Motion>', self.do_pan)
-        self.canvas.config(bg="black")
+        self.canvas.config(bg="white")
 
         # Zoom controls
         zoom_frame = tk.Frame(left_frame)
@@ -40,12 +42,12 @@ class ImageOptimizerGUI(tk.Tk):
         # Right: Optimizer params
         right_frame = tk.Frame(main_frame)
         right_frame.pack(side='right', fill='y', padx=10)
-        right_frame.config(bg="black")
+        right_frame.config(bg="white")
 
         # BBOX koordinatalari uchun Entry maydonlari
         bbox_frame = tk.Frame(right_frame)
         bbox_frame.pack(pady=1, fill='x')
-        bbox_frame.config(bg="black")
+        bbox_frame.config(bg="white")
         tk.Label(bbox_frame, text='x1').pack(side='left')
         self.bbox_x1 = tk.IntVar(value=240)
         tk.Entry(bbox_frame, textvariable=self.bbox_x1, width=5).pack(side='left')
@@ -147,7 +149,7 @@ class ImageOptimizerGUI(tk.Tk):
         tk.Entry(minmax_frame, textvariable=self.max_height, width=4).pack(side="left", padx=2)
         tk.Entry(minmax_frame, textvariable=self.max_width, width=4).pack(side="left", padx=2)
 
-        
+
 
     def change_image(self):
         val = self.image_index.get()
@@ -292,7 +294,7 @@ class ImageOptimizerGUI(tk.Tk):
         y1 = self.bbox_y1.get()
         x2 = self.bbox_x2.get()
         y2 = self.bbox_y2.get()
-        
+
         self.bbox_label.config(text=f'BBOX: ({x1}, {y1}) - ({x2}, {y2})')
         # Rasmni crop qilish
         if hasattr(self, 'image'):
@@ -311,13 +313,13 @@ class ImageOptimizerGUI(tk.Tk):
             draw = ImageDraw.Draw(self.image)
             draw.rectangle([x1, y1, x2, y2], outline='red', width=2)
             self.display_image(self.image)
-        
+
     def flip_image(self):
         if hasattr(self, 'image') and self.image is not None:
             flipped = self.image.transpose(Image.FLIP_LEFT_RIGHT)
             self.display_image(flipped)
             self.image = flipped
-        
+
 
 if __name__ == '__main__':
     app = ImageOptimizerGUI()

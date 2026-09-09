@@ -16,12 +16,9 @@ pip install -r requirements.txt
 ```
 
 Required packages:
-- PIL/Pillow for image processing
-- opencv-python for advanced image manipulation
+- pillow (PIL) for image processing
 - numpy for numerical operations
-- scipy for image filtering
 - matplotlib for visualization
-- scikit-image for image utilities
 
 ## Project Structure
 

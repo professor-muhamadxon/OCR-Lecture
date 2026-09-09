@@ -16,10 +16,9 @@ pip install -r requirements.txt
 ```
 
 Required packages:
-- numpy
-- tensorflow or pytorch
-- PIL/Pillow for image processing
-- matplotlib for visualization
+- numpy (neural network computations)
+- pillow (PIL) for image processing
+- tkinter for GUI development
 
 ## Project Structure
 
@@ -49,7 +48,7 @@ DigitRecognizer-NN/
 Start the digit recognition application:
 
 ```bash
-python src/main.py
+python src/adu_main_form.py
 ```
 
 ### Training a New Model
