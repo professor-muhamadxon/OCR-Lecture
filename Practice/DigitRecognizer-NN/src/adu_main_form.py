@@ -1,8 +1,11 @@
 import tkinter as tk
 from tkinter import Canvas
+
+import image_processing
+import mnist_loader
+import network
 import numpy as np
 from PIL import Image, ImageDraw, ImageTk
-import mnist_loader, network, image_processing
 
 # Rasm o‘lchami
 IMAGE_SIZE = 256
